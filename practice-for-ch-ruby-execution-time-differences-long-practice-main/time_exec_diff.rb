@@ -6,8 +6,8 @@ def my_min(arr)
 end 
 #total time complexity of O(n^2)
 
-list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
-p my_min(list)  # =>  -5
+# list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
+# p my_min(list)  # =>  -5
 
 def my_min2(arr) 
     min = arr[0] #1
@@ -18,6 +18,30 @@ def my_min2(arr)
 end
 #total time complexity of O(n)
 
-list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
-p my_min2(list)  # =>  -5
+# list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
+# p my_min2(list)  # =>  -5
 
+def largest_contiguous_subsum(arr)
+    new_arr = []
+    (0...arr.length).each do |i|
+        (0...arr.length).each do |j|
+            if j >= i 
+                new_arr << arr[i..j]
+            end
+        end
+    end
+    largest_sum = arr[0]
+    new_arr.each do |sub_arr|
+        largest_sum = sub_arr.sum if sub_arr.sum > largest_sum
+    end
+    return largest_sum
+end
+
+list = [5, 3, -7]
+p largest_contiguous_subsum(list) # => 8
+        
+list = [2, 3, -6, 7, -6, 7]
+p largest_contiguous_subsum(list) # => 8 (from [7, -6, 7])
+
+list = [-5, -1, -3]
+p largest_contiguous_subsum(list) # => -1 (from [-1])
