@@ -21,22 +21,23 @@ end
 # list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
 # p my_min2(list)  # =>  -5
 
-def largest_contiguous_subsum(arr)
-    new_arr = []
-    (0...arr.length).each do |i|
-        (0...arr.length).each do |j|
+def largest_contiguous_subsum(arr) 
+    new_arr = [] #1
+    (0...arr.length).each do |i| #n
+        (0...arr.length).each do |j| #n
             if j >= i 
-                new_arr << arr[i..j]
+                new_arr << arr[i..j] #n
             end
         end
     end
-    largest_sum = arr[0]
-    new_arr.each do |sub_arr|
-        largest_sum = sub_arr.sum if sub_arr.sum > largest_sum
+    largest_sum = arr[0] #1
+    p new_arr
+    new_arr.each do |sub_arr| #n
+        largest_sum = sub_arr.sum if sub_arr.sum > largest_sum #n
     end
-    return largest_sum
+    return largest_sum #1
 end
-
+#total time complexity of O(n^3)
 list = [5, 3, -7]
 p largest_contiguous_subsum(list) # => 8
         
